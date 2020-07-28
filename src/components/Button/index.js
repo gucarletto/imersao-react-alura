@@ -10,10 +10,13 @@ const Button = styled.button`
   font-weight: bold;
   font-size: 16px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 62px;
   text-decoration: none;
   display: inline-block;
   transition: opacity .3s;
+  background: #6741af;
+  box-shadow:  9px 9px 19px #422a70, 
+             -9px -9px 19px #8c58ee;
 
   &:hover,
   &:focus {
