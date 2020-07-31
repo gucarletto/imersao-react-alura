@@ -19,7 +19,7 @@ const Container = styled.ul`
       font-size: 30px;
     }
   }
-  
+
   .slick-prev {
     left: 0;
   }
@@ -37,7 +37,6 @@ export const SliderItem = styled.li`
     object-fit: cover;
   }
 `;
-
 
 const Slider = ({ children }) => (
   <Container>

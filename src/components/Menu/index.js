@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo.png';
@@ -8,7 +9,7 @@ function Menu() {
   return (
     <nav className="Menu">
       <Link to="/">
-        <img className='logo' src={logo} alt="gucarlettoflix logo" />
+        <img className="logo" src={logo} alt="gucarlettoflix logo" />
       </Link>
 
       <Button as={Link} className="ButtonLink" to="/cadastro/video">
