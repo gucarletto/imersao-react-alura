@@ -32,7 +32,7 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    const URL_CATEGORIAS = 'http://localhost:8080/categorias';
+    const URL_CATEGORIAS = 'https://imersao-react-alura.herokuapp.com/categorias';
     fetch(URL_CATEGORIAS).then(async (response) => {
       const jsonCategorias = await response.json();
       setCategorias([...jsonCategorias]);
