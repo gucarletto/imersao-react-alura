@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
+import categoryRepository from '../../../repositories/categorias';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -11,39 +13,32 @@ function CadastroCategoria() {
     cor: '',
   };
 
+  const { values, handleChange, clearForm } = useForm(valoresIniciais);
+
   const [categorias, setCategorias] = useState([]);
-  const [categoria, setCategoria] = useState(valoresIniciais);
 
   function handleSubmit(event) {
     event.preventDefault();
     setCategorias([
       ...categorias,
-      categoria,
+      values,
     ]);
-    setCategoria(valoresIniciais);
-  }
-
-  function handleChangeValues(event) {
-    const { name, value } = event.target;
-    setCategoria({
-      ...categoria,
-      [name]: value,
-    });
+    clearForm();
   }
 
   useEffect(() => {
-    const URL_CATEGORIAS = 'https://imersao-react-alura.herokuapp.com/categorias';
-    fetch(URL_CATEGORIAS).then(async (response) => {
-      const jsonCategorias = await response.json();
-      setCategorias([...jsonCategorias]);
-    });
+    categoryRepository.getAllCategories()
+      .then((jsonCategorias) => {
+        console.log(jsonCategorias);
+        setCategorias([...jsonCategorias]);
+      });
   }, []);
 
   return (
     <PageDefault>
       <h1>
         Cadastro de categoria:
-        {categoria.nome}
+        {values.nome}
       </h1>
 
       <form onSubmit={handleSubmit}>
@@ -52,24 +47,24 @@ function CadastroCategoria() {
           label="Nome"
           type="text"
           name="nome"
-          value={categoria.nome}
-          handleChange={handleChangeValues}
+          value={values.nome}
+          handleChange={handleChange}
         />
 
         <FormField
           label="Descrição"
           type="textarea"
           name="descricao"
-          value={categoria.descricao}
-          handleChange={handleChangeValues}
+          value={values.descricao}
+          handleChange={handleChange}
         />
 
         <FormField
           label="Cor"
           type="color"
           name="cor"
-          value={categoria.cor}
-          handleChange={handleChangeValues}
+          value={values.cor}
+          handleChange={handleChange}
         />
 
         <Button>
@@ -84,9 +79,9 @@ function CadastroCategoria() {
       </form>
 
       <ul>
-        {categorias.map((categ) => (
-          <li key={categ.id}>
-            {categ.titulo}
+        {categorias.map((categoria) => (
+          <li key={categoria.id}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>

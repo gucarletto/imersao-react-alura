@@ -16,6 +16,6 @@ ReactDOM.render(
       <Route path="/cadastro/categoria" component={CadastroCategoria} />
       <Route component={Pagina404} />
     </Switch>
-  </BrowserRouter>
-  , document.getElementById('root')
+  </BrowserRouter>,
+  document.getElementById('root'),
 );
