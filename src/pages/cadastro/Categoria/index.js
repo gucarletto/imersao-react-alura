@@ -29,7 +29,6 @@ function CadastroCategoria() {
   useEffect(() => {
     categoryRepository.getAllCategories()
       .then((jsonCategorias) => {
-        console.log(jsonCategorias);
         setCategorias([...jsonCategorias]);
       });
   }, []);
@@ -48,7 +47,7 @@ function CadastroCategoria() {
           type="text"
           name="nome"
           value={values.nome}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
 
         <FormField
@@ -56,7 +55,7 @@ function CadastroCategoria() {
           type="textarea"
           name="descricao"
           value={values.descricao}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
 
         <FormField
@@ -64,7 +63,7 @@ function CadastroCategoria() {
           type="color"
           name="cor"
           value={values.cor}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
 
         <Button>
